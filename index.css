@@ -1,3 +1,67 @@
+/* General body styling */
+body {
+    font-family: 'Cinzel', serif;
+    color: white;
+    text-align: center;
+    background: transparent;
+    overflow: hidden;
+}
+
+/* TERMS_SURVEY modal styling */
+#termsModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+#termsContent {
+    background: rgba(128,0,128,0.3); /* transparent purple */
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 0 30px purple;
+    max-width: 700px;
+    font-size: 1.2em;
+    letter-spacing: 2px; /* more spaced out */
+    line-height: 1.5;
+}
+
+#termsContent h2 {
+    color: #ff00ff;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px purple;
+}
+
+#termsContent p {
+    color: white;
+    text-shadow: 0 0 5px purple;
+    margin-bottom: 30px;
+}
+
+#termsContent button {
+    background: purple;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    margin: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+
+#termsContent button:hover {
+    box-shadow: 0 0 15px purple;
+}
+
 /* Mist layers */
 .mist {
     position: fixed;
@@ -9,12 +73,12 @@
     animation: drift 60s linear infinite;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.1; /* increase visibility */
+    opacity: 0.1;
 }
 
 .mist:nth-child(2) {
     animation-duration: 90s;
-    opacity: 0.08; /* slight difference between layers */
+    opacity: 0.08;
 }
 
 .mist:nth-child(3) {
@@ -27,8 +91,34 @@
     opacity: 0.05;
 }
 
-/* Mist movement */
+/* Mist movement animation */
 @keyframes drift {
     0% { transform: translate(0,0) rotate(0deg); }
     100% { transform: translate(50px,50px) rotate(360deg); }
+}
+
+/* Floating shadowy shapes */
+.floaters {
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, rgba(128,0,128,0.7) 0%, transparent 80%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    animation: floatersMove 40s linear infinite;
+}
+
+.floaters:nth-child(2) {
+    animation-duration: 50s;
+}
+
+.floaters:nth-child(3) {
+    animation-duration: 60s;
+}
+
+/* Optional floating animation (simple drift) */
+@keyframes floatersMove {
+    0% { transform: translate(0,0) rotate(0deg); }
+    100% { transform: translate(200px,150px) rotate(360deg); }
 }
