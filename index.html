@@ -38,13 +38,22 @@
         </div>
     </div>
 
+    <!-- Background music -->
+    <audio id="bgMusic" loop>
+        <source src="CONNECTION.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
     <script>
         const modal = document.getElementById('termsModal');
         const acceptBtn = document.getElementById('acceptBtn');
         const denyBtn = document.getElementById('denyBtn');
+        const bgMusic = document.getElementById('bgMusic');
 
         acceptBtn.addEventListener('click', () => {
             modal.style.display = 'none';
+            bgMusic.volume = 0.3; //volume (0.0 - 1.0)
+            bgMusic.play();
         });
 
         denyBtn.addEventListener('click', () => {
