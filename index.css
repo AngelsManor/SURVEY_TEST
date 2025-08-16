@@ -7,6 +7,12 @@ body {
     color: white;
 }
 
+/* Fade-in class */
+.fade-in {
+    opacity: 0;
+    transition: opacity 2s ease-in;
+}
+
 /* Modal overlay */
 #termsModal {
     position: fixed;
@@ -32,20 +38,25 @@ body {
     letter-spacing: 2px;
     line-height: 1.5;
     text-align: center;
+    animation: glowBox 1.5s infinite alternate;
 }
 
-#termsContent h2 {
+@keyframes glowBox {
+    from { box-shadow: 0 0 30px purple; }
+    to { box-shadow: 0 0 60px magenta; }
+}
+
+/* Glowing text */
+.glow-text {
     color: #ff00ff;
-    text-shadow: 0 0 10px purple;
-    margin-bottom: 20px;
+    text-shadow:
+        0 0 5px #ff00ff,
+        0 0 10px purple,
+        0 0 20px magenta,
+        0 0 30px purple;
 }
 
-#termsContent p {
-    color: white;
-    text-shadow: 0 0 5px purple;
-    margin-bottom: 30px;
-}
-
+/* Buttons */
 #termsContent button {
     background: purple;
     color: white;
