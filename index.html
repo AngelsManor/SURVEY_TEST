@@ -31,7 +31,7 @@
   </div>
 </div>
 
-<!-- Background audio  -->
+<!-- Background audio -->
 <audio id="bgMusic" loop style="display:none;">
   <source src="CONNECTION.mp3" type="audio/mpeg">
 </audio>
@@ -69,7 +69,7 @@ window.addEventListener('DOMContentLoaded', () => {
   // Floating shapes
   const container = document.getElementById('floatersContainer');
   const colors = ['#FF0000','#FF7F00','#FFFF00','#00FF00','#0000FF','#4B0082','#8F00FF']; 
-  const totalShapes = 25;
+  const totalShapes = 14; // fewer shapes
 
   for (let i = 0; i < totalShapes; i++) {
       const floater = document.createElement('div');
@@ -77,13 +77,13 @@ window.addEventListener('DOMContentLoaded', () => {
       
       let posX = Math.random() * window.innerWidth;
       let posY = Math.random() * window.innerHeight;
-      let speedX = (Math.random() - 0.5) * 0.5;
-      let speedY = (Math.random() - 0.5) * 0.5;
+      let speedX = (Math.random() - 0.5) * 0.2; // slower
+      let speedY = (Math.random() - 0.5) * 0.2;
 
       const color = colors[i % colors.length];
       floater.style.background = color;
-      floater.style.opacity = 0.3 + Math.random() * 0.3;
-      floater.style.boxShadow = `0 0 15px ${color}60, 0 0 25px ${color}40`;
+      floater.style.opacity = 0.05 + Math.random() * 0.05; // very faint
+      floater.style.boxShadow = `0 0 8px ${color}30, 0 0 15px ${color}20`;
 
       container.appendChild(floater);
 
