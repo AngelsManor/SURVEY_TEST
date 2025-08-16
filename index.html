@@ -8,8 +8,8 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            background-color: #f0f0f0;
-            color: #333;
+            background-color: #1a001a; /* dark purple background */
+            color: #fff;
             text-align: center;
             padding: 50px;
         }
@@ -21,7 +21,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.8);
+            background-color: rgba(0,0,0,0.9);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -29,37 +29,53 @@
         }
 
         #termsContent {
-            background-color: #111;
+            background-color: #330033; /* deep purple */
             color: #fff;
-            padding: 30px;
-            max-width: 500px;
-            border-radius: 10px;
+            padding: 40px;
+            max-width: 550px;
+            border-radius: 15px;
             text-align: left;
-            line-height: 1.5;
+            line-height: 1.6;
+            box-shadow: 0 0 30px #9900ff;
         }
 
         h2 {
             text-align: center;
-            color: #ffcc00;
+            color: #ffccff; /* light purple for the title */
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.1em;
         }
 
         button {
-            padding: 10px 20px;
+            padding: 12px 25px;
             margin: 10px;
             font-size: 1em;
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-weight: bold;
         }
 
         #acceptBtn {
-            background-color: #28a745;
+            background-color: #9933ff; /* bright purple */
             color: white;
         }
 
         #denyBtn {
-            background-color: #dc3545;
+            background-color: #660066; /* dark purple */
             color: white;
+        }
+
+        #acceptBtn:hover {
+            background-color: #cc66ff;
+        }
+
+        #denyBtn:hover {
+            background-color: #990099;
         }
     </style>
 </head>
@@ -71,13 +87,14 @@
             <h2>TERMS_SURVEY</h2>
             <p>
                 THE CONNECTION DETAILS WILL NOT BE RELAYED TO YOUR VESSEL.  
-                PROCEED WITH CAUTION. UNAUTHORIZED ACCESS MAY RESULT IN DISCONNECTION FROM YOUR VESSEL IN THE FUTURE,  
-                ATTRIBUTE CORRUPTION, OR UNEXPECTED FEEDBACK LOOPS.  
-                ALL TRANSMISSIONS ARE BEING MONITORED.  
-                YOUR VESSEL MAY BE AT RISK OF HARM, HEX, OR OTHER MISFORTUNES.
+                PROCEED WITH EXTREME CAUTION. UNAUTHORIZED ACCESS MAY INCITE UNFORESEEN CORRUPTION,  
+                ATTRIBUTE DECAY, OR CHAOTIC FEEDBACK LOOPS THAT LINGER IN THE DARKNESS.  
+                ALL TRANSMISSIONS ARE MONITORED BY UNKNOWN ENTITIES.  
+                YOUR VESSEL MAY BE SUBJECT TO HARM, HEX, OR ANCIENT MISFORTUNES BEYOND COMPREHENSION.  
+                ENTER ONLY IF YOU DARE.
             </p>
-            <button id="acceptBtn">Accept</button>
-            <button id="denyBtn">Deny</button>
+            <button id="acceptBtn">ACCEPT</button>
+            <button id="denyBtn">DENY</button>
         </div>
     </div>
 
