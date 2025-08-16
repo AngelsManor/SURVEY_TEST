@@ -1,41 +1,43 @@
-/* General body styling */
+/* Body styling */
 body {
-    font-family: 'Cinzel', serif;
-    color: white;
-    text-align: center;
-    background: transparent;
+    margin: 0;
     overflow: hidden;
+    font-family: 'Cinzel', serif;
+    background: black;
+    color: white;
 }
 
-/* TERMS_SURVEY modal styling */
+/* Modal overlay */
 #termsModal {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.5);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 10;
 }
 
+/* Modal content box */
 #termsContent {
-    background: rgba(128,0,128,0.3); /* transparent purple */
+    background: rgba(128,0,128,0.3);
     padding: 40px;
     border-radius: 15px;
     box-shadow: 0 0 30px purple;
     max-width: 700px;
     font-size: 1.2em;
-    letter-spacing: 2px; /* more spaced out */
+    letter-spacing: 2px;
     line-height: 1.5;
+    text-align: center;
 }
 
 #termsContent h2 {
     color: #ff00ff;
-    margin-bottom: 20px;
     text-shadow: 0 0 10px purple;
+    margin-bottom: 20px;
 }
 
 #termsContent p {
@@ -70,34 +72,18 @@ body {
     width: 200%;
     height: 200%;
     background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
-    animation: drift 60s linear infinite;
     pointer-events: none;
     z-index: 0;
     opacity: 0.1;
+    animation: drift 120s linear infinite;
 }
 
-.mist:nth-child(2) {
-    animation-duration: 90s;
-    opacity: 0.08;
-}
-
-.mist:nth-child(3) {
-    animation-duration: 120s;
-    opacity: 0.06;
-}
-
-.mist:nth-child(4) {
-    animation-duration: 150s;
-    opacity: 0.05;
-}
-
-/* Mist movement animation */
 @keyframes drift {
     0% { transform: translate(0,0) rotate(0deg); }
     100% { transform: translate(50px,50px) rotate(360deg); }
 }
 
-/* Floating shadowy shapes */
+/* Floating shapes */
 .floaters {
     position: fixed;
     width: 30px;
@@ -106,19 +92,4 @@ body {
     border-radius: 50%;
     pointer-events: none;
     z-index: 1;
-    animation: floatersMove 40s linear infinite;
-}
-
-.floaters:nth-child(2) {
-    animation-duration: 50s;
-}
-
-.floaters:nth-child(3) {
-    animation-duration: 60s;
-}
-
-/* Optional floating animation (simple drift) */
-@keyframes floatersMove {
-    0% { transform: translate(0,0) rotate(0deg); }
-    100% { transform: translate(200px,150px) rotate(360deg); }
 }
