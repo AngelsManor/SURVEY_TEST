@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TERMS_SURVEY</title>
-  <link rel="stylesheet" href="index.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TERMS_SURVEY</title>
+<link rel="stylesheet" href="index.css">
 </head>
 <body>
 
@@ -20,10 +20,10 @@
 <div class="floaters"></div>
 
 <!-- Terms Modal -->
-<div id="termsModal">
-  <div id="termsContent">
-    <h2>TERMS_SURVEY</h2>
-    <p>
+<div id="termsModal" class="fade-in">
+  <div id="termsContent" class="glow">
+    <h2 class="glow-text">TERMS_SURVEY</h2>
+    <p class="glow-text">
       THE CONNECTION DETAILS WILL NOT BE RELAYED TO YOUR VESSEL.  
       PROCEED WITH EXTREME CAUTION. UNAUTHORIZED ACCESS MAY INCITE UNFORESEEN CORRUPTION, ATTRIBUTE DECAY, OR CHAOTIC FEEDBACK LOOPS.  
       ALL TRANSMISSIONS ARE MONITORED.  
@@ -36,13 +36,37 @@
 </div>
 
 <!-- Background audio -->
-<audio autoplay loop style="display:none;">
+<audio id="bgMusic" loop style="display:none;">
   <source src="CONNECTION.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-  // Modal buttons
+window.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('termsModal');
+  const music = document.getElementById('bgMusic');
+
+  // Fade in modal
+  modal.style.opacity = 0;
+  modal.style.display = 'flex';
+  let opacity = 0;
+  const fadeIn = setInterval(() => {
+    opacity += 0.02;
+    modal.style.opacity = opacity;
+    if(opacity >= 1) clearInterval(fadeIn);
+  }, 20);
+
+  // Fade in music
+  music.volume = 0;
+  music.play();
+  let vol = 0;
+  const fadeMusic = setInterval(() => {
+    vol += 0.01;
+    if(vol >= 1) vol = 1;
+    music.volume = vol;
+    if(vol >= 1) clearInterval(fadeMusic);
+  }, 100);
+
+  // Modal buttons
   document.getElementById('acceptBtn').onclick = () => { modal.style.display = 'none'; };
   document.getElementById('denyBtn').onclick = () => { alert("ACCESS DENIED."); modal.style.display = 'none'; };
 
@@ -59,19 +83,17 @@
       function move() {
           posX += speedX;
           posY += speedY;
-
           if (posX > window.innerWidth) posX = 0;
           if (posX < 0) posX = window.innerWidth;
           if (posY > window.innerHeight) posY = 0;
           if (posY < 0) posY = window.innerHeight;
-
           floater.style.left = posX + 'px';
           floater.style.top = posY + 'px';
-
           requestAnimationFrame(move);
       }
       move();
   });
+});
 </script>
 
 </body>
