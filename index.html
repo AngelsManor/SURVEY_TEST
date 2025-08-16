@@ -51,15 +51,15 @@ window.addEventListener('DOMContentLoaded', () => {
     if(opacity >= 1) clearInterval(fadeIn);
   }, 20);
 
-  // Fade in music over 5 seconds
+  // Fade in music over 5 seconds, max volume 60%
   music.volume = 0;
   music.play();
   let vol = 0;
   const fadeMusic = setInterval(() => {
     vol += 0.002;
-    if(vol >= 1) vol = 1;
+    if(vol >= 0.6) vol = 0.6; // cap at 60%
     music.volume = vol;
-    if(vol >= 1) clearInterval(fadeMusic);
+    if(vol >= 0.6) clearInterval(fadeMusic);
   }, 20);
 
   // Modal buttons
