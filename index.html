@@ -18,6 +18,8 @@
 <div class="floaters"></div>
 <div class="floaters"></div>
 <div class="floaters"></div>
+<div class="floaters"></div>
+<div class="floaters"></div>
 
 <!-- Terms Modal -->
 <div id="termsModal" class="fade-in">
@@ -45,50 +47,58 @@ window.addEventListener('DOMContentLoaded', () => {
   const modal = document.getElementById('termsModal');
   const music = document.getElementById('bgMusic');
 
-  // Fade in modal
+  // Fade in modal over 5 seconds
   modal.style.opacity = 0;
   modal.style.display = 'flex';
   let opacity = 0;
   const fadeIn = setInterval(() => {
-    opacity += 0.02;
+    opacity += 0.004; // ~5 seconds total
     modal.style.opacity = opacity;
     if(opacity >= 1) clearInterval(fadeIn);
   }, 20);
 
-  // Fade in music
+  // Fade in music over 5 seconds
   music.volume = 0;
   music.play();
   let vol = 0;
   const fadeMusic = setInterval(() => {
-    vol += 0.01;
+    vol += 0.002; // ~5 seconds total
     if(vol >= 1) vol = 1;
     music.volume = vol;
     if(vol >= 1) clearInterval(fadeMusic);
-  }, 100);
+  }, 20);
 
   // Modal buttons
   document.getElementById('acceptBtn').onclick = () => { modal.style.display = 'none'; };
   document.getElementById('denyBtn').onclick = () => { alert("ACCESS DENIED."); modal.style.display = 'none'; };
 
-  // Floating shapes random movement
+  // Floating shapes random movement and color
   const floaters = document.querySelectorAll('.floaters');
-  floaters.forEach(floater => {
+  const colors = ['#FF0000','#FF7F00','#FFFF00','#00FF00','#0000FF','#4B0082','#8F00FF']; // rainbow
+
+  floaters.forEach((floater, i) => {
       let posX = Math.random() * window.innerWidth;
       let posY = Math.random() * window.innerHeight;
       let speedX = (Math.random() - 0.5) * 0.5;
       let speedY = (Math.random() - 0.5) * 0.5;
+
       floater.style.left = posX + 'px';
       floater.style.top = posY + 'px';
+      floater.style.background = colors[i % colors.length];
+      floater.style.boxShadow = `0 0 15px ${colors[i % colors.length]}, 0 0 25px ${colors[i % colors.length]}40`;
 
       function move() {
           posX += speedX;
           posY += speedY;
+
           if (posX > window.innerWidth) posX = 0;
           if (posX < 0) posX = window.innerWidth;
           if (posY > window.innerHeight) posY = 0;
           if (posY < 0) posY = window.innerHeight;
+
           floater.style.left = posX + 'px';
           floater.style.top = posY + 'px';
+
           requestAnimationFrame(move);
       }
       move();
