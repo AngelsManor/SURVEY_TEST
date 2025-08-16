@@ -1,63 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TERMS_SURVEY</title>
-    <link rel="stylesheet" href="index.css">
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TERMS_SURVEY</title>
+<link rel="stylesheet" href="index.css">
 </head>
 <body>
 
-    <!-- Mist layers -->
-    <div class="mist"></div>
-    <div class="mist"></div>
-    <div class="mist"></div>
-    <div class="mist"></div>
+<!-- Mist layers -->
+<div class="mist"></div>
+<div class="mist"></div>
 
-    <!-- Floating shadowy things -->
-    <div class="floaters" style="top: 10%; left: 20%;"></div>
-    <div class="floaters" style="top: 50%; left: 60%;"></div>
-    <div class="floaters" style="top: 80%; left: 30%;"></div>
+<!-- Floating shapes -->
+<div class="floaters"></div>
+<div class="floaters"></div>
+<div class="floaters"></div>
+<div class="floaters"></div>
+<div class="floaters"></div>
 
-    <!-- Modal overlay -->
-    <div id="termsModal">
-        <div id="termsContent">
-            <h2>TERMS_SURVEY</h2>
-            <p>
-                THE CONNECTION DETAILS WILL NOT BE RELAYED TO YOUR VESSEL.  
-                PROCEED WITH EXTREME CAUTION. UNAUTHORIZED ACCESS MAY INCITE UNFORESEEN CORRUPTION, ATTRIBUTE DECAY, OR CHAOTIC FEEDBACK LOOPS.  
-                ALL TRANSMISSIONS ARE MONITORED.  
-                YOUR VESSEL MAY BE SUBJECT TO HARM, HEX, OR MISFORTUNES BEYOND COMPREHENSION.  
-                DO YOU WISH TO PROCEED?
-            </p>
-            <div style="text-align:center;">
-                <button id="acceptBtn">ACCEPT</button>
-                <button id="denyBtn">DENY</button>
-            </div>
-        </div>
-    </div>
+<!-- Terms Modal -->
+<div id="termsModal">
+  <div id="termsContent">
+    <h2>TERMS_SURVEY</h2>
+    <p>
+      THE CONNECTION DETAILS WILL NOT BE RELAYED TO YOUR VESSEL.  
+      PROCEED WITH EXTREME CAUTION. UNAUTHORIZED ACCESS MAY INCITE UNFORESEEN CORRUPTION, ATTRIBUTE DECAY, OR CHAOTIC FEEDBACK LOOPS.  
+      ALL TRANSMISSIONS ARE MONITORED.  
+      YOUR VESSEL MAY BE SUBJECT TO HARM, HEX, OR MISFORTUNES BEYOND COMPREHENSION.  
+      DO YOU WISH TO PROCEED?
+    </p>
+    <button id="acceptBtn">ACCEPT</button>
+    <button id="denyBtn">DENY</button>
+  </div>
+</div>
 
-    <!-- Background music -->
-    <audio autoplay loop style="display:none;">
-        <source src="CONNECTION.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
+<!-- Background audio -->
+<audio autoplay loop style="display:none;">
+  <source src="CONNECTION.mp3" type="audio/mpeg">
+</audio>
 
-    <script>
-        const modal = document.getElementById('termsModal');
-        const acceptBtn = document.getElementById('acceptBtn');
-        const denyBtn = document.getElementById('denyBtn');
+<script>
+// Modal buttons
+const modal = document.getElementById('termsModal');
+document.getElementById('acceptBtn').onclick = () => { modal.style.display = 'none'; };
+document.getElementById('denyBtn').onclick = () => { alert("ACCESS DENIED."); modal.style.display = 'none'; };
 
-        acceptBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
+// Floating shapes random movement
+const floaters = document.querySelectorAll('.floaters');
+floaters.forEach(floater => {
+    let posX = Math.random() * window.innerWidth;
+    let posY = Math.random() * window.innerHeight;
+    let speedX = (Math.random() - 0.5) * 0.5;
+    let speedY = (Math.random() - 0.5) * 0.5;
+    floater.style.left = posX + 'px';
+    floater.style.top = posY + 'px';
 
-        denyBtn.addEventListener('click', () => {
-            alert("Access Denied. Your vessel will now disconnect.");
-            modal.style.display = 'none';
-        });
-    </script>
+    function move() {
+        posX += speedX;
+        posY += speedY;
+
+        if (posX > window.innerWidth) posX = 0;
+        if (posX < 0) posX = window.innerWidth;
+        if (posY > window.innerHeight) posY = 0;
+        if (posY < 0) posY = window.innerHeight;
+
+        floater.style.left = posX + 'px';
+        floater.style.top = posY + 'px';
+
+        requestAnimationFrame(move);
+    }
+    move();
+});
+</script>
 
 </body>
 </html>
