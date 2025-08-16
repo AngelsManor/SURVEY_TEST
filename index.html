@@ -12,14 +12,8 @@
 <div class="mist"></div>
 <div class="mist"></div>
 
-<!-- Floating shapes -->
-<div class="floaters"></div>
-<div class="floaters"></div>
-<div class="floaters"></div>
-<div class="floaters"></div>
-<div class="floaters"></div>
-<div class="floaters"></div>
-<div class="floaters"></div>
+<!-- Floating shapes container -->
+<div id="floatersContainer"></div>
 
 <!-- Terms Modal -->
 <div id="termsModal" class="fade-in">
@@ -52,7 +46,7 @@ window.addEventListener('DOMContentLoaded', () => {
   modal.style.display = 'flex';
   let opacity = 0;
   const fadeIn = setInterval(() => {
-    opacity += 0.004; // ~5 seconds total
+    opacity += 0.004;
     modal.style.opacity = opacity;
     if(opacity >= 1) clearInterval(fadeIn);
   }, 20);
@@ -62,7 +56,7 @@ window.addEventListener('DOMContentLoaded', () => {
   music.play();
   let vol = 0;
   const fadeMusic = setInterval(() => {
-    vol += 0.002; // ~5 seconds total
+    vol += 0.002;
     if(vol >= 1) vol = 1;
     music.volume = vol;
     if(vol >= 1) clearInterval(fadeMusic);
@@ -72,20 +66,26 @@ window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('acceptBtn').onclick = () => { modal.style.display = 'none'; };
   document.getElementById('denyBtn').onclick = () => { alert("ACCESS DENIED."); modal.style.display = 'none'; };
 
-  // Floating shapes random movement and color
-  const floaters = document.querySelectorAll('.floaters');
-  const colors = ['#FF0000','#FF7F00','#FFFF00','#00FF00','#0000FF','#4B0082','#8F00FF']; // rainbow
+  // Floating shapes
+  const container = document.getElementById('floatersContainer');
+  const colors = ['#FF0000','#FF7F00','#FFFF00','#00FF00','#0000FF','#4B0082','#8F00FF']; 
+  const totalShapes = 25;
 
-  floaters.forEach((floater, i) => {
+  for (let i = 0; i < totalShapes; i++) {
+      const floater = document.createElement('div');
+      floater.classList.add('floaters');
+      
       let posX = Math.random() * window.innerWidth;
       let posY = Math.random() * window.innerHeight;
       let speedX = (Math.random() - 0.5) * 0.5;
       let speedY = (Math.random() - 0.5) * 0.5;
 
-      floater.style.left = posX + 'px';
-      floater.style.top = posY + 'px';
-      floater.style.background = colors[i % colors.length];
-      floater.style.boxShadow = `0 0 15px ${colors[i % colors.length]}, 0 0 25px ${colors[i % colors.length]}40`;
+      const color = colors[i % colors.length];
+      floater.style.background = color;
+      floater.style.opacity = 0.3 + Math.random() * 0.3;
+      floater.style.boxShadow = `0 0 15px ${color}60, 0 0 25px ${color}40`;
+
+      container.appendChild(floater);
 
       function move() {
           posX += speedX;
@@ -102,7 +102,7 @@ window.addEventListener('DOMContentLoaded', () => {
           requestAnimationFrame(move);
       }
       move();
-  });
+  }
 });
 </script>
 
