@@ -4,7 +4,7 @@ body {
     overflow: hidden;
     font-family: 'Cinzel', serif;
     background: black;
-    color: white;
+    color: white; /* ✅ makes all default text white */
 }
 
 /* Fade-in class */
@@ -38,6 +38,7 @@ body {
     line-height: 1.5;
     text-align: center;
     animation: glowBox 1.5s infinite alternate;
+    color: white; /* ✅ force modal text to be white */
 }
 
 @keyframes glowBox {
@@ -47,7 +48,7 @@ body {
 
 /* Glowing text */
 .glow-text {
-    color: #ff00ff;
+    color: white; /* ✅ white base text */
     text-shadow:
         0 0 5px #ff00ff,
         0 0 10px purple,
