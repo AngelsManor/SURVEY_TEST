@@ -56,9 +56,9 @@ window.addEventListener('DOMContentLoaded', () => {
   let vol = 0;
   const fadeMusic = setInterval(() => {
     vol += 0.002;
-    if(vol >= 0.6) vol = 0.6; // cap at 60%
+    if(vol >= 0.3) vol = 0.3; // cap at 60%
     music.volume = vol;
-    if(vol >= 0.6) clearInterval(fadeMusic);
+    if(vol >= 0.3) clearInterval(fadeMusic);
   }, 20);
 
   // Modal buttons
