@@ -12,9 +12,6 @@
 <div class="mist"></div>
 <div class="mist"></div>
 
-<!-- Floating shapes container -->
-<div id="floatersContainer"></div>
-
 <!-- Terms Modal -->
 <div id="termsModal" class="fade-in">
   <div id="termsContent" class="glow">
@@ -50,65 +47,24 @@ window.addEventListener('DOMContentLoaded', () => {
     if(opacity >= 1) clearInterval(fadeIn);
   }, 20);
 
-  // Fade in music over 5 seconds, max volume 60%
+  // Fade in music over 5 seconds, max volume 30%
   music.volume = 0;
   music.play();
   let vol = 0;
   const fadeMusic = setInterval(() => {
     vol += 0.002;
-    if(vol >= 0.3) vol = 0.3; // cap at 60%
+    if(vol >= 0.3) vol = 0.3;
     music.volume = vol;
     if(vol >= 0.3) clearInterval(fadeMusic);
   }, 20);
 
   // Modal buttons
   document.getElementById('acceptBtn').onclick = () => { modal.style.display = 'none'; };
-  document.getElementById('denyBtn').onclick = () => { alert("ACCESS DENIED."); modal.style.display = 'none'; };
-
-  // Floating shapes
-  const container = document.getElementById('floatersContainer');
-  const colors = ['#FF0000','#FF7F00','#FFFF00','#00FF00','#0000FF','#4B0082','#8F00FF']; 
-  const totalShapes = 14; // fewer shapes
-
-  for (let i = 0; i < totalShapes; i++) {
-      const floater = document.createElement('div');
-      floater.classList.add('floaters');
-
-      // random size between 20–35px
-      const size = 20 + Math.random() * 15;
-      floater.style.width = size + 'px';
-      floater.style.height = size + 'px';
-      
-      let posX = Math.random() * window.innerWidth;
-      let posY = Math.random() * window.innerHeight;
-      let speedX = (Math.random() - 0.5) * 0.2; // slower
-      let speedY = (Math.random() - 0.5) * 0.2;
-
-      const color = colors[i % colors.length];
-      floater.style.background = color;
-
-      // more visible but still background
-      floater.style.opacity = 0.30
-      floater.style.boxShadow = `0 0 12px ${color}55, 0 0 25px ${color}40`;
-
-      container.appendChild(floater);
-
-      function move() {
-          posX += speedX;
-          posY += speedY;
-
-          if (posX > window.innerWidth) posX = 0;
-          if (posX < 0) posX = window.innerWidth;
-          if (posY > window.innerHeight) posY = 0;
-          if (posY < 0) posY = window.innerHeight;
-
-          floater.style.left = posX + 'px';
-          floater.style.top = posY + 'px';
-
-          requestAnimationFrame(move);
-      }
-      move();
-  }
+  
+  // Redirect to /declined page
+  document.getElementById('denyBtn').onclick = () => {
+    window.location.href = "declined.html";
+  };
 });
 </script>
 
