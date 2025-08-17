@@ -12,6 +12,9 @@
 <div class="mist"></div>
 <div class="mist"></div>
 
+<!-- Floating shapes container -->
+<div id="floatersContainer"></div>
+
 <!-- Terms Modal -->
 <div id="termsModal" class="fade-in">
   <div id="termsContent" class="glow">
@@ -60,11 +63,53 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // Modal buttons
   document.getElementById('acceptBtn').onclick = () => { modal.style.display = 'none'; };
-  
+
   // Redirect to /declined page
   document.getElementById('denyBtn').onclick = () => {
     window.location.href = "declined.html";
   };
+
+  // Floating shapes
+  const container = document.getElementById('floatersContainer');
+  const colors = ['#FF0000','#FF7F00','#FFFF00','#00FF00','#0000FF','#4B0082','#8F00FF']; 
+  const totalShapes = 14;
+
+  for (let i = 0; i < totalShapes; i++) {
+      const floater = document.createElement('div');
+      floater.classList.add('floaters');
+
+      const size = 20 + Math.random() * 15;
+      floater.style.width = size + 'px';
+      floater.style.height = size + 'px';
+
+      let posX = Math.random() * window.innerWidth;
+      let posY = Math.random() * window.innerHeight;
+      let speedX = (Math.random() - 0.5) * 0.2;
+      let speedY = (Math.random() - 0.5) * 0.2;
+
+      const color = colors[i % colors.length];
+      floater.style.background = color;
+      floater.style.opacity = 0.3;
+      floater.style.boxShadow = `0 0 12px ${color}55, 0 0 25px ${color}40`;
+
+      container.appendChild(floater);
+
+      function move() {
+          posX += speedX;
+          posY += speedY;
+
+          if (posX > window.innerWidth) posX = 0;
+          if (posX < 0) posX = window.innerWidth;
+          if (posY > window.innerHeight) posY = 0;
+          if (posY < 0) posY = window.innerHeight;
+
+          floater.style.left = posX + 'px';
+          floater.style.top = posY + 'px';
+
+          requestAnimationFrame(move);
+      }
+      move();
+  }
 });
 </script>
 
