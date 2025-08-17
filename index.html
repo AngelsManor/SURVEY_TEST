@@ -73,6 +73,11 @@ window.addEventListener('DOMContentLoaded', () => {
   for (let i = 0; i < totalShapes; i++) {
       const floater = document.createElement('div');
       floater.classList.add('floaters');
+
+      // random size between 20–35px
+      const size = 20 + Math.random() * 15;
+      floater.style.width = size + 'px';
+      floater.style.height = size + 'px';
       
       let posX = Math.random() * window.innerWidth;
       let posY = Math.random() * window.innerHeight;
@@ -81,8 +86,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
       const color = colors[i % colors.length];
       floater.style.background = color;
-      floater.style.opacity = 0.05 + Math.random() * 0.05; // very faint
-      floater.style.boxShadow = `0 0 8px ${color}30, 0 0 15px ${color}20`;
+
+      // more visible but still background
+      floater.style.opacity = 0.15 + Math.random() * 0.15; // 0.15–0.3
+      floater.style.boxShadow = `0 0 12px ${color}55, 0 0 25px ${color}40`;
 
       container.appendChild(floater);
 
